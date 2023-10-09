@@ -1,3 +1,5 @@
+// const fs = require("fs");
+
 class ProductManager {
 
     static id = 0;
@@ -9,8 +11,10 @@ class ProductManager {
         this.stock = stock
         
     }
-
+   
+    
     addProduct (title, description, price, thumbnail, stock) {
+        
         const product = { 
         title,
         description ,
@@ -40,12 +44,20 @@ class ProductManager {
         }
 
     }
-
+    addBD(){
+        let coso = this.products
+        const fs = require ("fs");
+        const cosoj = JSON.stringify(coso, "./package.json", "/t")
+        fs.writeFileSync("./package.json", cosoj , "utf-8")
+    }
+    
 }
 
+const mensaje = "hola"
 const productManager = new ProductManager()
 
 const newProduct = productManager.addProduct("huevos", "huevo colorado", 500, "./img", 400)
+
 const newProduct2 = productManager.addProduct("pollo", "pollo de campo", 1000, "./img2", 40)
 
 const id = 1
@@ -53,3 +65,5 @@ const id = 1
 productManager.getBYId(id)
 
 console.log(productManager.getProducts())
+
+productManager.addBD()

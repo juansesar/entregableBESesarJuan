@@ -1,0 +1,20 @@
+[
+/t{
+/t/t"title": "huevos",
+/t/t"description": "huevo colorado",
+/t/t"price": 500,
+/t/t"thumbnail": "./img",
+/t/t"code": 1123,
+/t/t"stock": 400,
+/t/t"id": 1
+/t},
+/t{
+/t/t"title": "pollo",
+/t/t"description": "pollo de campo",
+/t/t"price": 1000,
+/t/t"thumbnail": "./img2",
+/t/t"code": 2246,
+/t/t"stock": 40,
+/t/t"id": 2
+/t}
+]
