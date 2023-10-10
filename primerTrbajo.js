@@ -13,7 +13,7 @@ class ProductManager {
     }
 
 
-    async addProduct(title, description, price, thumbnail, stock) {
+    addProduct(title, description, price, thumbnail, stock) {
 
         const product = {
             title,
@@ -27,11 +27,12 @@ class ProductManager {
 
         this.products.push(product)
         const path = "./package.json"
-        let db = product
+        let db = this.products
         const fs = require("fs");
-        const dbJson = JSON.stringify(db, "./package.json", "/t")
+        const dbJson = JSON.stringify(db, "./package.json", "\t")
+        
         try {
-            await fs.promises.writeFileSync("./package.json", dbJson, "utf-8")
+            fs.writeFileSync("./package.json", dbJson, "utf-8")
             console.log("se escribio en archivo correctametne")
             return product
         } catch (error) {
@@ -46,10 +47,9 @@ class ProductManager {
         const fs = require("fs");
         const path = "./package.json"
         try {
-
-            const db = await fs.promises.readFile(path, "utf-8")
+            const db =  await fs.promises.readFile( "./package.json", "utf-8")
             const dbj = JSON.parse(db)
-            return console.log(dbj)
+            return console.log( dbj)
         } catch (error) {
             console.log(`hay un error en la lectura: ${error.menssage}`)
         }
@@ -83,9 +83,9 @@ class ProductManager {
             producto.price = price
             producto.thumbnail = thumbnail
             producto.stock = stock
-            const dbJson = JSON.stringify(dbj, path, "/t")
+            const dbJson = JSON.stringify(dbj, "./package.json", "/t")
             try {
-                await fs.promises.writeFileSync(path, dbJson, "utf-8")
+                await fs.promises.writeFileSync("./package.json", dbj, "utf-8")
                 console.log("se reescribio en archivo correctametne")
                 return product
             } catch (error) {
@@ -137,3 +137,5 @@ productManager.updateById(1, "huevos grandes", "colorados", 700, "./img", 400)
 console.log(productManager.getProducts())
 
 productManager.deleteById(1)
+
+console.log(productManager.getProducts())
