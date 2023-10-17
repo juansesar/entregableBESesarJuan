@@ -1,8 +1,8 @@
 [
 	{
-		"title": "huevos",
-		"description": "huevo colorado",
-		"price": 500,
+		"title": "leche",
+		"description": "descremada",
+		"price": 700,
 		"thumbnail": "./img",
 		"code": 1123,
 		"stock": 400,

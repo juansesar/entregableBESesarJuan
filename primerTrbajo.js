@@ -26,13 +26,12 @@ class ProductManager {
         }
 
         this.products.push(product)
-        const path = "./package.json"
         let db = this.products
         const fs = require("fs");
-        const dbJson = JSON.stringify(db, "./package.json", "\t")
+        const dbJson = JSON.stringify(db, ProductManager.path, "\t")
         
         try {
-            fs.writeFileSync("./package.json", dbJson, "utf-8")
+            fs.writeFileSync(ProductManager.path, dbJson, "utf-8")
             console.log("se escribio en archivo correctametne")
             return product
         } catch (error) {
@@ -44,10 +43,11 @@ class ProductManager {
 
 
     async getProducts() {
+        console.log(productManager.path, "hola")
         const fs = require("fs");
-        const path = "./package.json"
+        
         try {
-            const db =  await fs.promises.readFile( "./package.json", "utf-8")
+            const db =  await fs.promises.readFile( ProductManager.path, "utf-8")
             const dbj = JSON.parse(db)
             return console.log( dbj)
         } catch (error) {
@@ -57,8 +57,7 @@ class ProductManager {
 
     async getBYId(id) {
         const fs = require("fs");
-        const path = "./package.json"
-        const db = await fs.promises.readFile(path, "utf-8")
+        const db = await fs.promises.readFile(ProductManager.path, "utf-8")
         const dbj = JSON.parse(db)
         const producto = dbj.find((p) => p.id === id)
         if (!producto) {
@@ -71,11 +70,10 @@ class ProductManager {
 
     async updateById(id, title, description, price, thumbnail, stock) {
         const fs = require("fs");
-        const path = "./package.json"
-        const db = await fs.promises.readFile("./package.json", "utf-8")
+        const db = await fs.promises.readFile(ProductManager.path, "utf-8")
         const dbj = JSON.parse(db)
-        const producto = dbj.find((p) => p.id === id)
-        console.log("hola")
+        let producto = dbj.find((p) => p.id === id)
+        
         if (!producto) {
             console.log("este producto no existe")
         } else {
@@ -85,12 +83,12 @@ class ProductManager {
             producto.price = price
             producto.thumbnail = thumbnail
             producto.stock = stock
-            
+            console.log(producto.title)
             try {
-                const dbJson = JSON.stringify(dbj, "./package.json", "\t")
-                await fs.promises.writeFileSync("./package.json", dbJson, "utf-8")
+                const dbJson = JSON.stringify(dbj, ProductManager.path, "\t")
+                fs.writeFileSync(ProductManager.path, dbJson, "utf-8")
                 console.log("se reescribio en archivo correctametne")
-                return product
+                
             } catch (error) {
                 console.log(`hay un error en la reescritura: ${error.menssage}`)
             }
@@ -100,8 +98,7 @@ class ProductManager {
 
     async deleteById(id) {
         const fs = require("fs");
-        const path = "./package.json"
-        const db = await fs.promises.readFile("./package.json", "utf-8")
+        const db = await fs.promises.readFile(ProductManager.path, "utf-8")
         const dbj = JSON.parse(db)
         const producto = dbj.find((p) => p.id === id)
         if (!producto) {
@@ -112,7 +109,7 @@ class ProductManager {
             console.log(`el producto ${producto.title} se ha eliminado, la lita de productos ahora es:`, dbj)
             const dbJson = JSON.stringify(dbj, path, "/t")
             try {
-                await fs.promises.writeFileSync(path, dbJson, "utf-8")
+                await fs.promises.writeFileSync(ProductManager.path, dbJson, "utf-8")
                 console.log("se reescribio en archivo correctametne")
                 return producto
             } catch (error) {
@@ -130,16 +127,18 @@ const newProduct = productManager.addProduct("huevos", "huevo colorado", 500, ".
 
 const newProduct2 = productManager.addProduct("pollo", "pollo de campo", 1000, "./img2", 40)
 
-const id = 1
+// const id = 1
 
-productManager.getBYId(id)
+// productManager.getBYId(id)
 
-console.log(productManager.getProducts())
+// console.log(productManager.getProducts())
 
-productManager.updateById(1, "leche", "colorados", 700, "./img", 400)
-
-console.log(productManager.getProducts())
-
-productManager.deleteById(1)
+productManager.updateById(1, "leche", "descremada", 700, "./img", 400)
 
 console.log(productManager.getProducts())
+
+
+
+// productManager.deleteById(1)
+
+// console.log(productManager.getProducts())
