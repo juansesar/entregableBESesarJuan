@@ -42,13 +42,23 @@ class ProductManager {
 
 
     async getProducts() {
-        console.log(productManager.path, "hola")
         const fs = require("fs");
         
         try {
             const db =  await fs.promises.readFile( ProductManager.path, "utf-8")
             const dbj = JSON.parse(db)
             return console.log( dbj)
+        } catch (error) {
+            console.log(`hay un error en la lectura: ${error.menssage}`)
+        }
+    }
+
+    async getProductsHttp() {
+        const fs = require("fs");
+        try {
+            const db =  await fs.promises.readFile( ProductManager.path, "utf-8")
+            const dbj = JSON.parse(db)
+            return dbj
         } catch (error) {
             console.log(`hay un error en la lectura: ${error.menssage}`)
         }
@@ -158,25 +168,23 @@ class ProductManager {
 
 // console.log(productManager.getProducts())
 
-const http = require ("http")
+
 const express = require("express")
 const app = express ()
-const server = http.createServer((reqquest,response)=>{
-    response.end("hola desde el modulo nativo de http")
-}
 
-)
-server.listen(8080, () => {
-    console.log("servidor corriendo puerto 8080")
-})
+const productManager= new ProductManager
 
-app.get("/productos", (req, res),  () =>{
-    const db = ProductManager.getProducts()
+app.get("/", (req, res) =>{
+    const db = productManager.getProductsHttp()
     res.json(db)
 })
 
-app.get("/productosFiltrados", (req, res),  () =>{
-    const db = ProductManager.getProducts()
-    const producto = dbj.find((p) => p.id < 5)
+app.get("/productosFiltrados", (req, res) =>{
+    const db = productManager.getProductsHttp()
+    const producto = db.find((p) => p.id < 5)
     res.json(producto)
+})
+
+app.listen(8080, () => {
+    console.log("servidor corriendo puerto 8080")
 })
