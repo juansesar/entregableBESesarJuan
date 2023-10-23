@@ -59,6 +59,7 @@ class ProductManager {
         try {
             const db =  await fs.promises.readFile( ProductManager.path, "utf-8")
             const dbj = JSON.parse(db)
+            console.log(dbj)
             return dbj
         } catch (error) {
             console.log(`hay un error en la lectura: ${error.menssage}`)
@@ -73,7 +74,7 @@ class ProductManager {
         if (!producto) {
             console.log("este producto no existe")
         } else {
-            console.log("el producto es", producto.title)
+            return producto
         }
 
     }
@@ -131,27 +132,27 @@ class ProductManager {
 
 }
 
-const productManager = new ProductManager()
+// const productManager = new ProductManager()
 
-const newProduct = productManager.addProduct("huevos", "huevo colorado", 500, "./img", 400)
+// const newProduct = productManager.addProduct("huevos", "huevo colorado", 500, "./img", 400)
 
-const newProduct2 = productManager.addProduct("pollo", "pollo de campo", 1000, "./img2", 40)
+// const newProduct2 = productManager.addProduct("pollo", "pollo de campo", 1000, "./img2", 40)
 
-const newProduct3 = productManager.addProduct("aceitunas", "verdes", 970, "./img2", 400)
+// const newProduct3 = productManager.addProduct("aceitunas", "verdes", 970, "./img2", 400)
 
-const newProduct4 = productManager.addProduct("pan", "lactal", 800, "./img2", 100)
+// const newProduct4 = productManager.addProduct("pan", "lactal", 800, "./img2", 100)
 
-const newProduct5 = productManager.addProduct("pan", "de campoo", 1200, "./img2", 40)
+// const newProduct5 = productManager.addProduct("pan", "de campoo", 1200, "./img2", 40)
 
-const newProduct6 = productManager.addProduct("leche", "descremada", 500, "./img2", 40)
+// const newProduct6 = productManager.addProduct("leche", "descremada", 500, "./img2", 40)
 
-const newProduct7 = productManager.addProduct("leche", "entera", 500, "./img2", 40)
+// const newProduct7 = productManager.addProduct("leche", "entera", 500, "./img2", 40)
 
-const newProduct8 = productManager.addProduct("queso portsalud", "sin sal", 1800, "./img2", 50)
+// const newProduct8 = productManager.addProduct("queso portsalud", "sin sal", 1800, "./img2", 50)
 
-const newProduct9 = productManager.addProduct("queso rallado", "de sardo", 2700, "./img2", 80)
+// const newProduct9 = productManager.addProduct("queso rallado", "de sardo", 2700, "./img2", 80)
 
-const newProduct10 = productManager.addProduct("milanesa de pollo", "de pechuga", 2700, "./img2", 20)
+// const newProduct10 = productManager.addProduct("milanesa de pollo", "de pechuga", 2700, "./img2", 20)
 
 // const id = 1
 
