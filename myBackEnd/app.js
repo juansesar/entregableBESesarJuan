@@ -4,8 +4,8 @@ const app = express ()
 app.use(express.json())
 
 const ProductManager = require("./ProductManager") 
-const productManager = new ProductManager
-console.log(ProductManager)
+const productManager = new ProductManager()
+console.log("hola",ProductManager)
 
 app.get("/products", async (req, res) =>{
     const db = productManager.getProductsHttp()

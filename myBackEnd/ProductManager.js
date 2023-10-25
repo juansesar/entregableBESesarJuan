@@ -58,9 +58,8 @@ class ProductManager {
         const fs = require("fs");
         try {
             const db =  await fs.promises.readFile( ProductManager.path, "utf-8")
-            const dbj = JSON.parse(db)
-            console.log(dbj)
-            return dbj
+            
+            return db
         } catch (error) {
             console.log(`hay un error en la lectura: ${error.menssage}`)
         }
@@ -132,6 +131,7 @@ class ProductManager {
 
 }
 
+module.exports= ProductManager
 // const productManager = new ProductManager()
 
 // const newProduct = productManager.addProduct("huevos", "huevo colorado", 500, "./img", 400)
