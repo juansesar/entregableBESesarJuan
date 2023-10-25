@@ -15,8 +15,9 @@ app.get("/products", async (req, res) =>{
     });
 })
 
-app.get("/productos/products:id", async (req, res) =>{
-    const db = await productManager.getBYId(req.params.id)
+app.get("/productos/products/:id", async (req, res) =>{
+    let id= req.params.id
+    const db = await productManager.getBYId(id)
     res.json({
         db,
         status: "success",
