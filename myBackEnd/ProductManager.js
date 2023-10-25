@@ -58,8 +58,8 @@ class ProductManager {
         const fs = require("fs");
         try {
             const db =  await fs.promises.readFile( ProductManager.path, "utf-8")
-            
-            return db
+            const dbj = JSON.parse(db)
+            return dbj
         } catch (error) {
             console.log(`hay un error en la lectura: ${error.menssage}`)
         }
@@ -69,11 +69,11 @@ class ProductManager {
         const fs = require("fs");
         const db = await fs.promises.readFile(ProductManager.path, "utf-8")
         const dbj = JSON.parse(db)
-        const producto = dbj.find((p) => p.id === id)
+        const producto = dbj.find((p) => p.id == id)
         if (!producto) {
             console.log("este producto no existe")
         } else {
-            return producto
+           return producto
         }
 
     }
@@ -132,6 +132,7 @@ class ProductManager {
 }
 
 module.exports= ProductManager
+
 // const productManager = new ProductManager()
 
 // const newProduct = productManager.addProduct("huevos", "huevo colorado", 500, "./img", 400)
