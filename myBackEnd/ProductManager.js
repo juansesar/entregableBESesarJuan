@@ -69,7 +69,7 @@ class ProductManager {
         const fs = require("fs");
         const db = await fs.promises.readFile(ProductManager.path, "utf-8")
         const dbj = JSON.parse(db)
-        const producto = dbj.find((p) => p.id == id)
+        const producto = dbj.find((p) => p.id === id)
         if (!producto) {
             console.log("este producto no existe")
         } else {

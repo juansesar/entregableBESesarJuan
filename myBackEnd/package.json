@@ -1,5 +1,5 @@
-[
-	{
+{
+	"0": {
 		"title": "huevos",
 		"description": "huevo colorado",
 		"price": 500,
@@ -8,7 +8,7 @@
 		"stock": 400,
 		"id": 1
 	},
-	{
+	"1": {
 		"title": "pollo",
 		"description": "pollo de campo",
 		"price": 1000,
@@ -17,7 +17,7 @@
 		"stock": 40,
 		"id": 2
 	},
-	{
+	"2": {
 		"title": "aceitunas",
 		"description": "verdes",
 		"price": 970,
@@ -26,7 +26,7 @@
 		"stock": 400,
 		"id": 3
 	},
-	{
+	"3": {
 		"title": "pan",
 		"description": "lactal",
 		"price": 800,
@@ -35,7 +35,7 @@
 		"stock": 100,
 		"id": 4
 	},
-	{
+	"4": {
 		"title": "pan",
 		"description": "de campoo",
 		"price": 1200,
@@ -44,7 +44,7 @@
 		"stock": 40,
 		"id": 5
 	},
-	{
+	"5": {
 		"title": "leche",
 		"description": "descremada",
 		"price": 500,
@@ -53,7 +53,7 @@
 		"stock": 40,
 		"id": 6
 	},
-	{
+	"6": {
 		"title": "leche",
 		"description": "entera",
 		"price": 500,
@@ -62,7 +62,7 @@
 		"stock": 40,
 		"id": 7
 	},
-	{
+	"7": {
 		"title": "queso portsalud",
 		"description": "sin sal",
 		"price": 1800,
@@ -71,7 +71,7 @@
 		"stock": 50,
 		"id": 8
 	},
-	{
+	"8": {
 		"title": "queso rallado",
 		"description": "de sardo",
 		"price": 2700,
@@ -80,7 +80,7 @@
 		"stock": 80,
 		"id": 9
 	},
-	{
+	"9": {
 		"title": "milanesa de pollo",
 		"description": "de pechuga",
 		"price": 2700,
@@ -88,5 +88,8 @@
 		"code": 11230,
 		"stock": 20,
 		"id": 10
+	},
+	"dependencies": {
+		"express": "^4.18.2"
 	}
-]
+}
