@@ -78,8 +78,8 @@ class Cart {
             producto.stock = stock
             console.log(producto.title)
             try {
-                const dbJson = JSON.stringify(dbj, ProductManager.path, "\t")
-                fs.writeFileSync(ProductManager.path, dbJson, "utf-8")
+                const dbJson = JSON.stringify(dbj, Cart.cartpath, "\t")
+                fs.writeFileSync(Cart.cartpath, dbJson, "utf-8")
                 return dbJson
                 
             } catch (error) {
@@ -91,7 +91,7 @@ class Cart {
 
     async deleteById(id) {
         const fs = require("fs");
-        const db = await fs.promises.readFile(ProductManager.Productspath, "utf-8")
+        const db = await fs.promises.readFile(Cart.cartpath, "utf-8")
         const dbj = JSON.parse(db)
         const producto = dbj.find((p) => p.id === id)
         if (!producto) {
@@ -100,9 +100,9 @@ class Cart {
             const idDbj = producto.id - 1
             delete dbj[idDbj]
             console.log(`el producto ${producto.title} se ha eliminado, la lita de productos ahora es:`, dbj)
-            const dbJson = JSON.stringify(dbj,Productspath, "/t")
+            const dbJson = JSON.stringify(dbj,cartpath, "/t")
             try {
-                await fs.promises.writeFileSync(ProductManager.Productspath, dbJson, "utf-8")
+                await fs.promises.writeFileSync(Cart.cartpath, dbJson, "utf-8")
                 console.log("se reescribio en archivo correctametne")
                 return producto
             } catch (error) {
