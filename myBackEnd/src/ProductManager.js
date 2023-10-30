@@ -4,7 +4,7 @@ class ProductManager {
 
     static id = 0;
     static code = 0;
-    static path = "./package.json"
+    static path = "./products.json"
 
     constructor(stock) {
         this.products = [];
@@ -97,7 +97,7 @@ class ProductManager {
             try {
                 const dbJson = JSON.stringify(dbj, ProductManager.path, "\t")
                 fs.writeFileSync(ProductManager.path, dbJson, "utf-8")
-                console.log("se reescribio en archivo correctametne")
+                return dbJson
                 
             } catch (error) {
                 console.log(`hay un error en la reescritura: ${error.menssage}`)
