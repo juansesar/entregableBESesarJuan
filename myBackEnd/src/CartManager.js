@@ -99,14 +99,14 @@ class Cart {
         } else {
             const idDbj = producto.id - 1
             delete dbj[idDbj]
-            console.log(`el producto ${producto.title} se ha eliminado, la lita de productos ahora es:`, dbj)
+            console.log(`el producto ${producto.title} se ha eliminado, la lista de productos ahora es:`, dbj)
             const dbJson = JSON.stringify(dbj,cartpath, "/t")
             try {
                 await fs.promises.writeFileSync(Cart.cartpath, dbJson, "utf-8")
                 console.log("se reescribio en archivo correctametne")
-                return producto
+                return dbj
             } catch (error) {
-                console.log(`hay un error en la reescritura: ${error.menssage}`)
+                console.log(`hay un error: ${error.menssage}`)
             }
         }
 
